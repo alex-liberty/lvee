@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   match 'sitemap-news.xml' => 'main#sitemap_news'
 
   scope "/:lang", constraints: {lang: /[a-z]{2}/} do
+    get '/' => redirect('/%{lang}/main')
+    
     namespace :admin do
       get "/users/:to_list/mail" => 'info_mailer#index', as: "mail_user"
       put "/users/mail" => 'info_mailer#index'
